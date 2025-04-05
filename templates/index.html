@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>YouTube Video Downloader</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>YouTube Video Downloader 🎥</h1>
+        <form action="/download" method="post">
+            <input type="text" name="url" placeholder="Enter YouTube video URL" required>
+            <button type="submit">Download Video</button>
+        </form>
+    </div>
+
+    {% if success %}
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="document.getElementById('popup').style.display='none'">&times;</span>
+            <h2>✅ Download Complete!</h2>
+            <p>Video has been saved to your Downloads folder.</p>
+        </div>
+    </div>
+    <script>
+        window.onload = function() {
+            document.getElementById('popup').style.display = 'block';
+        };
+    </script>
+    {% endif %}
+</body>
+</html>
