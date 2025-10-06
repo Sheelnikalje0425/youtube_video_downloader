@@ -25,14 +25,31 @@ h1 {
     color: #f05454;
 }
 
-input[type="text"] {
+.input-wrapper {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.input-wrapper input[type="text"] {
+    flex: 2;
     padding: 12px 15px;
-    width: 100%;
-    max-width: 400px;
     border: none;
     border-radius: 8px;
-    margin-bottom: 20px;
     font-size: 16px;
+    max-width: 300px;
+}
+
+.input-wrapper select {
+    flex: 1;
+    padding: 12px 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    background-color: #2c2c2c;
+    color: white;
 }
 
 button {
@@ -50,8 +67,6 @@ button:hover {
     background-color: #ff7675;
 }
 
-
-/* Popup Styles */
 .popup {
     display: none;
     position: fixed;

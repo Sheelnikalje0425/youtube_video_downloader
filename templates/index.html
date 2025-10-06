@@ -8,9 +8,18 @@
 <body>
     <div class="container">
         <h1>YouTube Video Downloader 🎥</h1>
+
         <form action="/download" method="post">
-            <input type="text" name="url" placeholder="Enter YouTube video URL" required>
-            <button type="submit">Download Video</button>
+            <div class="input-wrapper">
+                <input type="text" name="url" placeholder="Enter YouTube video URL" required>
+
+                <select name="format" required>
+                    <option value="mp4">MP4 (Video)</option>
+                    <option value="mp3">MP3 (Audio)</option>
+                </select>
+            </div>
+
+            <button type="submit">Download</button>
         </form>
     </div>
 
@@ -19,7 +28,7 @@
         <div class="popup-content">
             <span class="close" onclick="document.getElementById('popup').style.display='none'">&times;</span>
             <h2>✅ Download Complete!</h2>
-            <p>Video has been saved to your Downloads folder.</p>
+            <p>Your file has been saved to the Downloads folder.</p>
         </div>
     </div>
     <script>
