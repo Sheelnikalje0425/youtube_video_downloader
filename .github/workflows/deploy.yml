@@ -10,25 +10,40 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    # 1️⃣ Checkout the latest code
+    - name: Checkout repository
       uses: actions/checkout@v4
 
+    # 2️⃣ Deploy via SSH
     - name: Deploy to EC2 via SSH
-      uses: appleboy/ssh-action@v1.6.0
+      uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USER }}
         key: ${{ secrets.EC2_SSH_KEY }}
+        port: 22
         script: |
+          echo "🚀 Starting deployment on EC2..."
+
+          # Navigate to project folder
           cd ~/youtube_video_downloader
+
+          # Reset any local changes and pull latest code
           git reset --hard
           git pull origin main
-          
+
           # Activate virtual environment
           source venv/bin/activate
-          
-          # Install/update dependencies
+
+          # Install/update dependencies safely
+          pip install --upgrade pip
           pip install -r requirements.txt
-          
-          # Restart systemd service
+
+          # Restart Gunicorn systemd service
+          sudo systemctl daemon-reload
           sudo systemctl restart flaskapp
+
+          # Check service status
+          sudo systemctl status flaskapp --no-pager
+
+          echo "✅ Deployment completed successfully!"
