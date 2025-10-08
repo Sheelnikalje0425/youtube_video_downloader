@@ -1,0 +1,3 @@
+# Netscape HTTP Cookie File
+# This is a dummy file for testing public videos
+# Lines starting with # are comments
